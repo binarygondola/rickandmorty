@@ -1,11 +1,14 @@
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 import React from 'react';
-import {styles} from './CharacterDetails.styled';
+import { styles } from './CharacterDetails.styled';
+import { CharacterDetailsStackParamList } from '../../CharacterDetails.routes';
 
-const CharacterDetailsScreen = () => {
+const CharacterDetailsScreen = ({ name }: CharacterDetailsStackParamList["CharacterDetailsScreen"]) => {
+
+  console.log(name);
   return (
     <View style={styles.container}>
-      <Text>Implement CharacterDetailsScreen</Text>
+      <Text>Implement CharacterDetailsScreen XD</Text>
     </View>
   );
 };
