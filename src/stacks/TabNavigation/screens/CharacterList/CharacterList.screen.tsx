@@ -1,13 +1,12 @@
-import { View, Text, Button, ScrollView, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, Text, Button, ScrollView, FlatList, ActivityIndicator, TouchableOpacity, StatusBar } from 'react-native';
 import React from 'react';
 import { styles } from './CharacterList.styled';
 import { useNavigation } from '@react-navigation/native';
 import { MainStackNavigationProp } from '../../../Main/Main.routes';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { ApiResponse, Character, Info } from '../../../../interfaces';
+import { Character, Info } from '../../../../interfaces';
 
 const fetchData = async ({ pageParam }: { pageParam: number }): Promise<Info<Character[]>> => {
-  console.log("ładowanie" + pageParam);
   let url = `https://rickandmortyapi.com/api/character/?page=${pageParam}`;
   const response = await fetch(url);
   if (!response.ok) {
@@ -43,7 +42,7 @@ const CharacterListScreen = () => {
       <TouchableOpacity onPress={() => navigate('CharacterDetailsStack',
         {
           screen: 'CharacterDetailsScreen',
-          params: { name: character.name }
+          params: { character: character }
         })}>
         <Text>{character.name}</Text>
       </TouchableOpacity>
@@ -69,16 +68,7 @@ const CharacterListScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Implement CharactersListScreen</Text>
-      <Button
-        title="Navigate to Details screen"
-        onPress={(): void => {
-          navigate('CharacterDetailsStack', {
-            screen: 'CharacterDetailsScreen',
-            params: { name: 'XD' }
-          });
-        }}
-      />
+      <StatusBar />
       {infQuery.status === 'success' && (
         <ScrollView
           style={{ backgroundColor: 'red' }}
