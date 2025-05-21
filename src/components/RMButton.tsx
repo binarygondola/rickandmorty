@@ -2,13 +2,13 @@ import React from 'react';
 import { Pressable, Text, ViewStyle } from 'react-native';
 
 type RMButtonProps = {
-  onPress: () => void;
-  text: string;
-  rightIcon?: JSX.Element;
   leftIcon?: JSX.Element;
+  onPress: () => void;
   pressed: boolean;
+  rightIcon?: JSX.Element;
   short?: boolean;
   style?: ViewStyle;
+  text: string;
   textColor?: string;
 };
 
