@@ -6,7 +6,7 @@ import { Character, Info } from '../../../../interfaces';
 import { CharacterFlatList } from './CharacterFlatList';
 import { Heading } from './CharacterListHeader';
 
-const CharacterListScreen = () => {
+export const CharacterListScreen = () => {
   const [characterName, setCharacterName] = useState('');
 
   const fetchData = React.useCallback(async ({ pageParam }: { pageParam: number }): Promise<Info<Character[]>> => {
@@ -34,7 +34,7 @@ const CharacterListScreen = () => {
 
   const flattenedData = React.useMemo(() => {
     if (!infQuery.data) return [];
-    return infQuery.data.pages.flatMap(page => page.results);
+    return infQuery.data.pages.flatMap(page => page.results!);
   }, [infQuery.data]);
 
   const onEndReached = React.useCallback(() => {
@@ -53,5 +53,3 @@ const CharacterListScreen = () => {
     </View>
   );
 };
-
-export default CharacterListScreen;

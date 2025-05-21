@@ -6,11 +6,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { CharacterDetailsCard } from './CharacterDetailsCard';
 import { useNavigation } from '@react-navigation/native';
 import { ImageHeader } from '../../../../components/ImageHeader';
-import { CharactersContext } from '../../../../context/CharacterContext';
 
 const CharacterDetailsScreen = ({ route }: DetailsScreenProps) => {
   const navigation = useNavigation();
-  const { characters, setCharacters } = useContext(CharactersContext);
 
   return (
     <View style={styles.container}>

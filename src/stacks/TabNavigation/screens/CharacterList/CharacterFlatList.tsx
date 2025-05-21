@@ -5,8 +5,10 @@ import { useNavigation } from "@react-navigation/native";
 import { MainStackNavigationProp } from "../../../Main/Main.routes";
 import { Card } from "../../../../components/Card";
 
-export const CharacterFlatList = ({ data, onEndReached }: { data: (Character | undefined)[], onEndReached: () => void }) => {
+export const CharacterFlatList = ({ data, onEndReached }: { data: Character[], onEndReached: () => void }) => {
   const { navigate } = useNavigation<MainStackNavigationProp>();
+
+  console.log(data);
 
   const ListItem = React.memo<{ character: Character }>(
     ({ character }) => (
@@ -29,7 +31,6 @@ export const CharacterFlatList = ({ data, onEndReached }: { data: (Character | u
       keyExtractor={(item) => item!.id.toString()}
       onEndReached={onEndReached}
       renderItem={({ item }) => <ListItem character={item!} />}
-    >
-    </FlatList>
+    />
   );
 }

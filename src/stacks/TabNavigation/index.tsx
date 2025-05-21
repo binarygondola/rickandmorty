@@ -1,8 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { CharacterListScreen } from './screens/CharacterList';
 import { FavoriteCharactersScreen } from './screens/FavoriteCharacters';
 import Ionicons from '@expo/vector-icons/Ionicons';
+// import { CharacterListScreen } from './screens/CharacterList';
+import { CharacterListScreen } from './screens/CharacterList/CharacterList.screen';
 
 const Tab = createBottomTabNavigator();
 
