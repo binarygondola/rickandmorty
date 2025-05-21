@@ -1,8 +1,9 @@
 import React, { useState } from "react"
-import { Image, Text, View, TextInput, Pressable, TouchableWithoutFeedback, Keyboard } from "react-native"
+import { Text, View, TextInput, Pressable, TouchableWithoutFeedback, Keyboard } from "react-native"
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Filter } from "./Filter";
 import { RMButton } from "../../../../components/RMButton";
+import { ImageHeader } from "../../../../components/ImageHeader";
 
 type HeadingProps = {
   character: string;
@@ -25,12 +26,7 @@ export const Heading = ({ character, setCharacter }: HeadingProps) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={{ alignSelf: 'stretch' }}>
-        <View style={{ flexDirection: 'row', backgroundColor: '#162C1B' }}>
-          <Image
-            resizeMode='contain'
-            source={require("../../../../../assets/images/rick-and-morty.png")}
-            style={{ marginLeft: 16, marginVertical: 24, height: 32, width: 104 }} />
-        </View>
+        <ImageHeader />
         <View style={{ padding: 16, paddingTop: 8 }}>
           <Text style={{ fontSize: 36, fontFamily: "Inter_400Regular", marginBottom: 16, color: '#162C1B' }}>Characters</Text>
           <View style={{

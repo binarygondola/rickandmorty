@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
 import { Character } from '../../../../interfaces';
 import { RMButton } from '../../../../components/RMButton';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { CharactersContext } from '../../../../context/CharacterContext';
 
 interface CharacterDetailsCardProps {
   character: Character;
-  isLiked: boolean;
-  onLikePress: () => void;
 }
 
-export const CharacterDetailsCard = ({ character, onLikePress }: CharacterDetailsCardProps) => {
+export const CharacterDetailsCard = ({ character }: CharacterDetailsCardProps) => {
+  const { characters, setCharacters } = useContext(CharactersContext);
+
+  const isLiked = characters.includes(character.id);
+
+  const onPress = React.useCallback(() => {
+    if (characters.includes(character.id)) {
+      setCharacters(characters.filter(x => x !== character.id));
+    } else {
+      setCharacters([...characters, character.id])
+    }
+  }, [characters])
+
   return (
     <View style={styles.card}>
       <Image source={{ uri: character.image }} style={styles.characterImage} />
@@ -18,14 +29,14 @@ export const CharacterDetailsCard = ({ character, onLikePress }: CharacterDetail
       <View style={styles.imageContainer}>
       </View>
       <RMButton
-        onPress={() => console.log('XD')}
-        text={'ADD TO LIKED'}
-        pressed={false}
+        onPress={onPress}
+        text={isLiked ? 'REMOVE FROM LIKED' : 'ADD TO LIKED'}
+        pressed={isLiked}
         leftIcon={
           <Ionicons
-            name="star-outline"
+            name={isLiked ? "star-sharp" : "star-outline"}
             size={16}
-            color="white"
+            color={isLiked ? "#F89F34" : "white"}
             style={{ marginRight: 8 }}
           />}
       />
@@ -65,10 +76,11 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 24,
     marginHorizontal: 16,
+    marginBottom: 16,
     padding: 12,
     boxShadow: '4 4 0 0 #224229',
     borderColor: '#224229',
-    borderWidth: 2,
+    borderWidth: 1,
   },
   containerName: {
     flex: 1,

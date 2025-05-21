@@ -16,8 +16,6 @@ export const CharacterFlatList = ({ data, onEndReached }: { data: (Character | u
             screen: 'CharacterDetailsScreen',
             params: { character: character }
           })}
-        onLikePress={() => { console.log('XD') }}
-        isLiked={false}
         character={character}
       />),
     (prevProps, nextProps) => {

@@ -20,9 +20,9 @@ export const LikeButton = ({ onPress, text, pressed, style }: LikeButtonProps) =
       pressed={pressed}
       leftIcon={
         <Ionicons
-          name="star-outline"
+          name={pressed ? "star-sharp" : "star-outline"}
           size={16}
-          color="#224229"
+          color={pressed ? "#F89F34" : "#224229"}
           style={{ marginRight: 8 }}
         />}
     />

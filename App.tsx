@@ -9,17 +9,20 @@ import { MainStack } from './src/stacks/Main';
 import { useFonts } from 'expo-font';
 import { Inter_400Regular } from '@expo-google-fonts/inter';
 import { DMMono_400Regular } from '@expo-google-fonts/dm-mono';
+import { CharactersProvider } from './src/context/CharacterContext';
 
 function App(): React.JSX.Element {
   useFonts({ Inter_400Regular, DMMono_400Regular });
 
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NavigationContainer>
-        <MainStack />
-      </NavigationContainer>
+      <CharactersProvider>
+        <NavigationContainer>
+          <MainStack />
+        </NavigationContainer>
+      </CharactersProvider>
     </QueryClientProvider>
   );
 }

@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
 import { Character } from '../interfaces';
 import { LikeButton } from './LikeButton';
+import { CharactersContext } from '../context/CharacterContext';
 
 interface CardProps {
   character: Character;
-  isLiked: boolean;
-  onLikePress: () => void;
   onCardPress: () => void;
 }
 
-export const Card = ({ character, isLiked, onLikePress, onCardPress }: CardProps) => {
+export const Card = ({ character, onCardPress }: CardProps) => {
+  const { characters, setCharacters } = useContext(CharactersContext);
+
+  const isLiked = characters.includes(character.id);
+
+  const onPress = React.useCallback(() => {
+    if (characters.includes(character.id)) {
+      setCharacters(characters.filter(x => x !== character.id));
+    } else {
+      setCharacters([...characters, character.id])
+    }
+  }, [characters])
+
   return (
     <Pressable onPress={onCardPress}>
       <View style={styles.card}>
@@ -27,7 +38,12 @@ export const Card = ({ character, isLiked, onLikePress, onCardPress }: CardProps
 
         <View style={styles.imageContainer}>
           <Image source={{ uri: character.image }} style={styles.characterImage} />
-          <LikeButton onPress={onLikePress} text="LIKE" pressed={isLiked} style={styles.likeButton} />
+          <LikeButton
+            onPress={onPress}
+            text="LIKE"
+            pressed={isLiked}
+            style={styles.likeButton}
+          />
         </View>
       </View>
     </Pressable>
