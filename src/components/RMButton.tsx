@@ -7,18 +7,20 @@ type RMButtonProps = {
   rightIcon?: JSX.Element;
   leftIcon?: JSX.Element;
   pressed: boolean;
+  short?: boolean;
   style?: ViewStyle;
   textColor?: string;
 };
 
-export const RMButton = ({ onPress, text, rightIcon, pressed, style, leftIcon, textColor }: RMButtonProps) => {
+export const RMButton = ({ onPress, text, rightIcon, pressed, style, leftIcon, textColor, short }: RMButtonProps) => {
   return (
     <Pressable
       onPress={onPress}
       style={[{
         flexDirection: "row",
         backgroundColor: pressed ? "#162C1B" : "#224229",
-        alignSelf: "flex-start",
+        alignSelf: short ? "flex-start" : "stretch",
+        justifyContent: 'center',
         paddingHorizontal: 24,
         paddingVertical: 8,
         borderRadius: 32,

@@ -10,7 +10,7 @@ interface CardProps {
   onCardPress: () => void;
 }
 
-const Card = ({ character, isLiked, onLikePress, onCardPress }: CardProps) => {
+export const Card = ({ character, isLiked, onLikePress, onCardPress }: CardProps) => {
   return (
     <Pressable onPress={onCardPress}>
       <View style={styles.card}>
@@ -40,12 +40,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 24,
     padding: 12,
+    marginHorizontal: 12,
     marginBottom: 24,
-    marginRight: 4,
     boxShadow: '4 4 0 0 #224229',
     borderColor: '#224229',
     borderWidth: 2,
-    width: 300,
   },
   container: {
     flex: 1,
@@ -74,12 +73,8 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     borderRadius: 24,
-    resizeMode: 'cover',
-    borderColor: '#162C1B',
+    borderColor: '#224229',
     borderWidth: 1,
-  },
-  likeButtonContainer: {
-
   },
   likeButton: {
     flexDirection: 'row',
@@ -95,11 +90,9 @@ const styles = StyleSheet.create({
     right: 8,
   },
   likeButtonText: {
-    marginLeft: 5,
-    fontSize: 14,
+    marginLeft: 4,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#004D40',
+    color: '#224229',
   },
 });
-
-export default Card;

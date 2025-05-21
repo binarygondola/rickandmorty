@@ -4,8 +4,7 @@ import { styles } from './CharacterList.styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { Character, Info } from '../../../../interfaces';
 import { CharacterFlatList } from './CharacterFlatList';
-import { Heading } from './Heading';
-import { RMButton } from '../../../../components/RMButton';
+import { Heading } from './CharacterListHeader';
 
 const CharacterListScreen = () => {
   const [characterName, setCharacterName] = useState('');

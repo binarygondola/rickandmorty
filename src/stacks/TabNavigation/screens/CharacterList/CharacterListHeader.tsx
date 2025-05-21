@@ -59,6 +59,7 @@ export const Heading = ({ character, setCharacter }: HeadingProps) => {
             </Pressable>
           </View>
           <RMButton
+            short
             text="FILTER"
             onPress={() => setShowFilters(!showFilters)}
             rightIcon={filterIcon}

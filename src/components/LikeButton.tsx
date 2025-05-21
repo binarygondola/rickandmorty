@@ -3,7 +3,6 @@ import { ViewStyle } from 'react-native';
 import { RMButton } from './RMButton';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-
 type LikeButtonProps = {
   onPress: () => void;
   text: string;
