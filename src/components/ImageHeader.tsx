@@ -1,13 +1,15 @@
 import React from "react";
 import { Image, View } from "react-native";
+import { styles } from "./ImageHeader.styled";
 
 export const ImageHeader = () => {
   return (
-    <View style={{ flexDirection: 'row', backgroundColor: '#162C1B' }}>
+    <View style={styles.container}>
       <Image
         resizeMode='contain'
         source={require("../../assets/images/rick-and-morty.png")}
-        style={{ marginLeft: 16, marginVertical: 24, height: 32, width: 104 }} />
+        style={styles.image}
+      />
     </View>
   );
 }

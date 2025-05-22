@@ -4,8 +4,10 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Filter } from "./Filter";
 import { RMButton } from "../../../../components/RMButton";
 import { ImageHeader } from "../../../../components/ImageHeader";
+import { styles } from "./CharacterListHeader.styled";
+import { colorScheme } from "../../../../colorScheme";
 
-type CharacterListHeaderProps = {
+interface CharacterListHeaderProps {
   character: string;
   setCharacter: (_: string) => void;
   setFilters: (_: string) => void
@@ -29,25 +31,20 @@ export const CharacterListHeader = ({ character, setCharacter, setFilters }: Cha
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={{ alignSelf: 'stretch' }}>
+      <>
         <ImageHeader />
-        <View style={{ padding: 16, paddingTop: 8 }}>
-          <Text style={{ fontSize: 36, fontFamily: "Inter_400Regular", marginBottom: 16, color: '#162C1B' }}>Characters</Text>
-          <View style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            borderRadius: 32,
-            borderColor: '#162C1B',
-            borderWidth: 1,
-            paddingHorizontal: 12,
-            marginBottom: 16,
-            backgroundColor: '#FFFFFF'
-          }}>
-            <Ionicons name="search" size={20} color="black" />
+        <View style={styles.container}>
+          <Text style={styles.title}>Characters</Text>
+          <View style={styles.search}>
+            <Ionicons
+              name="search"
+              size={20}
+              color="black"
+            />
             <TextInput
-              style={{ flexGrow: 1, fontFamily: 'Inter_400Regular', fontSize: 16 }}
+              style={styles.textInput}
               placeholder="Search the characters"
+              placeholderTextColor={colorScheme.mediumGreen}
               onChangeText={setCharacter}
               value={character}
             />
@@ -74,8 +71,7 @@ export const CharacterListHeader = ({ character, setCharacter, setFilters }: Cha
               setFilters={setFilters}
             />)}
         </View>
-      </View>
+      </>
     </TouchableWithoutFeedback>
-
   )
 }

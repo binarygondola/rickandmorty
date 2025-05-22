@@ -6,6 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { CharacterDetailsCard } from './CharacterDetailsCard';
 import { useNavigation } from '@react-navigation/native';
 import { ImageHeader } from '../../../../components/ImageHeader';
+import { colorScheme } from '../../../../colorScheme';
 
 const CharacterDetailsScreen = ({ route }: DetailsScreenProps) => {
   const navigation = useNavigation();
@@ -26,18 +27,22 @@ const CharacterDetailsScreen = ({ route }: DetailsScreenProps) => {
 const Header = ({ onPress }: { onPress: () => void }) => {
   return (
     <>
-      <View style={{ alignSelf: 'stretch' }}>
-        <ImageHeader />
-      </View>
-      <View style={{ flexDirection: 'row', alignSelf: 'stretch', margin: 16, }}>
-        <Pressable onPress={onPress} style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderColor: '#59695C' }}>
-          <Ionicons name='arrow-back' color='#59695C' size={15} />
-          <Text style={{ fontSize: 15, fontFamily: "Inter_400Regular", color: '#59695C' }}>Go back to Characters List</Text>
+      <ImageHeader />
+      <View style={styles.headerText}>
+        <Pressable
+          onPress={onPress}
+          style={styles.goBackButton}>
+          <Ionicons
+            name='arrow-back'
+            color={colorScheme.mediumGreen}
+            size={16}
+          />
+          <Text
+            style={styles.goBackButtonText}>Go back to Characters List</Text>
         </Pressable >
       </View>
     </>
   )
 }
-
 
 export default CharacterDetailsScreen;

@@ -53,7 +53,7 @@ const FavoriteCharactersScreen = () => {
 
       let species = /&species=(.*)/.exec(filters);
       if (species !== null) {
-        query.data = query.data.filter((character) => character.status.toLowerCase().includes(species[1]));
+        query.data = query.data.filter((character) => character.species.toLowerCase().includes(species[1]));
       }
 
       setCharactersList(query.data);
@@ -65,9 +65,16 @@ const FavoriteCharactersScreen = () => {
   return (
     <View style={styles.container}>
       <StatusBar />
-      <CharacterListHeader setFilters={setFilters} character={characterName} setCharacter={setCharacterName} />
+      <CharacterListHeader
+        setFilters={setFilters}
+        character={characterName}
+        setCharacter={setCharacterName}
+      />
       {query.status === 'success' && (
-        <CharacterFlatList data={characterList} onEndReached={onEndReached} />
+        <CharacterFlatList
+          data={characterList}
+          onEndReached={onEndReached}
+        />
       )}
     </View>
   );

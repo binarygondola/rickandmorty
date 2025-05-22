@@ -1,7 +1,9 @@
 import React from 'react';
 import { Pressable, Text, ViewStyle } from 'react-native';
+import { colorScheme } from '../colorScheme';
+import { styles } from './RMButton.styled';
 
-type RMButtonProps = {
+interface RMButtonProps {
   leftIcon?: JSX.Element;
   onPress: () => void;
   pressed: boolean;
@@ -11,23 +13,26 @@ type RMButtonProps = {
   text: string;
   textColor?: string;
 };
-
-export const RMButton = ({ onPress, text, rightIcon, pressed, style, leftIcon, textColor, short }: RMButtonProps) => {
+export const RMButton = ({
+  onPress,
+  text,
+  rightIcon,
+  pressed,
+  style,
+  leftIcon,
+  textColor,
+  short,
+}: RMButtonProps) => {
   return (
     <Pressable
       onPress={onPress}
       style={[{
-        flexDirection: "row",
-        backgroundColor: pressed ? "#162C1B" : "#224229",
+        backgroundColor: pressed ? colorScheme.darkGreen : colorScheme.primaryGreen,
         alignSelf: short ? "flex-start" : "stretch",
-        justifyContent: 'center',
-        paddingHorizontal: 24,
-        paddingVertical: 8,
-        borderRadius: 32,
-      }, style]}
+      }, styles.buttonStyle, style]}
     >
       {leftIcon}
-      <Text style={{ color: textColor ?? 'white', fontFamily: "DMMono_400Regular", fontSize: 14 }}>{text}</Text>
+      <Text style={[styles.textStyle, { color: textColor ?? "#fff" }]}>{text}</Text>
       {rightIcon}
     </Pressable>
   )

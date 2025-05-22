@@ -3,16 +3,11 @@ import React from 'react';
 
 const CharactersContext = createContext({
   characters: [] as number[],
-  setCharacters: (characters: number[]) => { },
+  setCharacters: (_: number[]) => { },
 });
 
 const CharactersProvider = ({ children }: { children: React.ReactNode }) => {
   const [characters, setCharacters] = useState<number[]>([]);
-
-  React.useCallback(() => {
-    console.log('titta');
-    console.log(characters);
-  }, [characters]);
 
   return (
     <CharactersContext.Provider value={{ characters, setCharacters }}>

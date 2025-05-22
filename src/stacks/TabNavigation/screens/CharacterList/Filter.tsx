@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Checkbox from 'expo-checkbox';
 import { View, Text, StyleSheet } from 'react-native';
 import { RMButton } from '../../../../components/RMButton';
+import { styles } from './Filter.styled';
 
 interface FilterProps {
   status: string;
@@ -100,35 +101,3 @@ const MyCheckbox = ({ isChecked, setChecked, text }: { isChecked: boolean, setCh
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  filterContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 16,
-    marginTop: 8,
-    boxShadow: '4 4 0 0 #224229',
-    borderColor: '#224229',
-    borderWidth: 2,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'space-around',
-    paddingRight: 10,
-  },
-  label: {
-    fontSize: 12,
-    color: '#59695C',
-    marginBottom: 4,
-    fontFamily: "DMMono_400Regular",
-    letterSpacing: 1.08,
-  },
-  labelText: {
-    fontSize: 16,
-    fontFamily: "Inter_400Regular",
-    color: '#162C1B',
-    marginBottom: 10,
-  },
-
-});

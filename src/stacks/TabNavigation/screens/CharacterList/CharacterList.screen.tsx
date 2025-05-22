@@ -34,7 +34,6 @@ export const CharacterListScreen = () => {
   });
 
   React.useEffect(() => {
-    console.log('refetch');
     infQuery.refetch();
   }, [filters]);
 
@@ -56,9 +55,16 @@ export const CharacterListScreen = () => {
   return (
     <View style={styles.container}>
       <StatusBar />
-      <CharacterListHeader character={characterName} setCharacter={setCharacterName} setFilters={setFilters} />
+      <CharacterListHeader
+        character={characterName}
+        setCharacter={setCharacterName}
+        setFilters={setFilters}
+      />
       {infQuery.status === 'success' && (
-        <CharacterFlatList data={flattenedData} onEndReached={onEndReached} />
+        <CharacterFlatList
+          data={flattenedData}
+          onEndReached={onEndReached}
+        />
       )}
     </View>
   );
