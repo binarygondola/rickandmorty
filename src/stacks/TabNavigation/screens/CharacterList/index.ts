@@ -1,1 +1,1 @@
-export {default as CharacterListScreen} from './CharacterList.screen';
+export { CharacterListScreen as CharacterListScreen } from './CharacterList.screen';

@@ -1,7 +1,13 @@
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Character } from '../../interfaces';
+
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 
 export type CharacterDetailsStackParamList = {
-  CharacterDetailsScreen: undefined;
+  CharacterDetailsScreen: {
+    character: Character;
+  };
 };
 
 export type CharacterDetailsStackNavigationProp =
@@ -12,3 +18,5 @@ export const CharacterDetailsStackRoutes: {
 } = {
   CharacterDetailsScreen: 'CharacterDetailsScreen',
 };
+
+export type DetailsScreenProps = NativeStackScreenProps<CharacterDetailsStackParamList, 'CharacterDetailsScreen'>;
