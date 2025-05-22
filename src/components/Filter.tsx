@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Checkbox from 'expo-checkbox';
 import { View, Text, StyleSheet } from 'react-native';
-import { RMButton } from '../../../../components/RMButton';
+import { RMButton } from './RMButton';
 import { styles } from './Filter.styled';
+import { colorScheme } from '../colorScheme';
 
 interface FilterProps {
   status: string;
@@ -62,7 +63,7 @@ export const Filter = ({ status, setStatus, species, setSpecies, setFilters }: F
             text='Humanoid'
           />
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={styles.buttonContainer}>
           <RMButton
             onPress={() => {
               setStatus('');
@@ -71,8 +72,8 @@ export const Filter = ({ status, setStatus, species, setSpecies, setFilters }: F
             }}
             text='RESET'
             pressed={false}
-            style={{ backgroundColor: 'white', borderColor: '#224229', borderWidth: 1 }}
-            textColor='#224229'
+            style={styles.resetButton}
+            textColor={colorScheme.primaryGreen}
           />
           <RMButton
             onPress={() => {
@@ -89,15 +90,21 @@ export const Filter = ({ status, setStatus, species, setSpecies, setFilters }: F
   );
 };
 
-const MyCheckbox = ({ isChecked, setChecked, text }: { isChecked: boolean, setChecked: (_: any) => void, text: string }) => {
+interface MyCheckboxProps {
+  isChecked: boolean,
+  setChecked: (_: boolean) => void,
+  text: string
+}
+
+const MyCheckbox = ({ isChecked, setChecked, text }: MyCheckboxProps) => {
   return (
-    <View style={{ flexDirection: 'row', marginBottom: 4, paddingVertical: 4 }}>
+    <View style={styles.checkboxContainer}>
       <Checkbox
         value={isChecked}
         onValueChange={setChecked}
-        color={isChecked ? '#162C1B' : undefined}
+        color={isChecked ? colorScheme.darkGreen : undefined}
       />
-      <Text style={{ fontFamily: "Inter_400Regular", marginLeft: 8 }}>{text}</Text>
+      <Text style={styles.checkboxText}>{text}</Text>
     </View>
   )
 }

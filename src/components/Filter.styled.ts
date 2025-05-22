@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorScheme } from '../../../../colorScheme';
+import { colorScheme } from '../colorScheme';
 
 export const styles = StyleSheet.create({
   filterContainer: {
@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     marginTop: 8,
     boxShadow: '4 4 0 0 ' + colorScheme.primaryGreen,
     borderColor: colorScheme.primaryGreen,
-    borderWidth: 2,
+    borderWidth: 1,
   },
   container: {
     flex: 1,
@@ -29,5 +29,22 @@ export const styles = StyleSheet.create({
     color: colorScheme.darkGreen,
     marginBottom: 10,
   },
-
+  resetButton: {
+    backgroundColor: 'white',
+    borderColor: colorScheme.primaryGreen,
+    borderWidth: 1
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  checkboxText: {
+    fontFamily: "Inter_400Regular",
+    marginLeft: 8,
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    marginBottom: 4,
+    paddingVertical: 4,
+  }
 });

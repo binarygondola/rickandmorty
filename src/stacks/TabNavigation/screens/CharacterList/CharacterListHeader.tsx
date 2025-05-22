@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Text, View, TextInput, Pressable, TouchableWithoutFeedback, Keyboard } from "react-native"
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Filter } from "./Filter";
+import { Filter } from "../../../../components/Filter";
 import { RMButton } from "../../../../components/RMButton";
 import { ImageHeader } from "../../../../components/ImageHeader";
 import { styles } from "./CharacterListHeader.styled";
