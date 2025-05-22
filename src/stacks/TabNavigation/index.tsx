@@ -2,8 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FavoriteCharactersScreen } from './screens/FavoriteCharacters';
 import Ionicons from '@expo/vector-icons/Ionicons';
-// import { CharacterListScreen } from './screens/CharacterList';
 import { CharacterListScreen } from './screens/CharacterList/CharacterList.screen';
+import { colorScheme } from '../../colorScheme';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,9 +13,9 @@ export const TabNavigationStack = () => {
       screenOptions={() => ({
         headerShown: false,
         tabBarActiveTintColor: 'white',
-        tabBarInactiveTintColor: '#DAE4DC',
-        tabBarActiveBackgroundColor: '#224229',
-        tabBarInactiveBackgroundColor: '#162C1B',
+        tabBarInactiveTintColor: colorScheme.greyshGreen,
+        tabBarActiveBackgroundColor: colorScheme.primaryGreen,
+        tabBarInactiveBackgroundColor: colorScheme.darkGreen,
       })}
     >
       <Tab.Screen

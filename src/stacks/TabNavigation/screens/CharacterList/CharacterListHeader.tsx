@@ -31,7 +31,7 @@ export const CharacterListHeader = ({ character, setCharacter, setFilters }: Cha
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <>
+      <View>
         <ImageHeader />
         <View style={styles.container}>
           <Text style={styles.title}>Characters</Text>
@@ -71,7 +71,7 @@ export const CharacterListHeader = ({ character, setCharacter, setFilters }: Cha
               setFilters={setFilters}
             />)}
         </View>
-      </>
+      </View>
     </TouchableWithoutFeedback>
   )
 }
