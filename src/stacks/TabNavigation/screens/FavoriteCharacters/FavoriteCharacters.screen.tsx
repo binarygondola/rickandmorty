@@ -1,7 +1,7 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { View, StatusBar } from 'react-native';
-import { Info, Character } from '../../../../interfaces';
+import { Character } from '../../../../interfaces';
 import { CharacterFlatList } from '../CharacterList/CharacterFlatList';
 import { CharacterListHeader } from '../CharacterList/CharacterListHeader';
 import { styles } from './FavoriteCharacters.styled';

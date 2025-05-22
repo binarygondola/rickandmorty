@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
+import { View, Image } from 'react-native';
 import { Character } from '../../../../interfaces';
 import { RMButton } from '../../../../components/RMButton';
 import Ionicons from '@expo/vector-icons/Ionicons';

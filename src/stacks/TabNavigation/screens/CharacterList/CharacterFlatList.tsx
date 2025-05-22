@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { FlatList } from "react-native";
 import { Character } from "../../../../interfaces";
 import { useNavigation } from "@react-navigation/native";
 import { MainStackNavigationProp } from "../../../Main/Main.routes";

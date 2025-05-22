@@ -1,5 +1,5 @@
-import { Image, Pressable, ScrollView, StatusBar, Text, View } from 'react-native';
-import React, { useContext } from 'react';
+import { Pressable, ScrollView, StatusBar, Text, View } from 'react-native';
+import React from 'react';
 import { styles } from './CharacterDetails.styled';
 import { DetailsScreenProps } from '../../CharacterDetails.routes';
 import Ionicons from '@expo/vector-icons/Ionicons';

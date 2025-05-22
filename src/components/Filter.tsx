@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Checkbox from 'expo-checkbox';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import { RMButton } from './RMButton';
 import { styles } from './Filter.styled';
 import { colorScheme } from '../colorScheme';
