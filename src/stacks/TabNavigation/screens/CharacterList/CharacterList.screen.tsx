@@ -4,19 +4,20 @@ import { styles } from './CharacterList.styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { Character, Info } from '../../../../interfaces';
 import { CharacterFlatList } from './CharacterFlatList';
-import { Heading } from './CharacterListHeader';
+import { CharacterListHeader } from './CharacterListHeader';
 
 export const CharacterListScreen = () => {
   const [characterName, setCharacterName] = useState('');
+  const [filters, setFilters] = useState('');
 
   const fetchData = React.useCallback(async ({ pageParam }: { pageParam: number }): Promise<Info<Character[]>> => {
-    let url = `https://rickandmortyapi.com/api/character/?page=${pageParam}&name=${characterName}`;
+    let url = `https://rickandmortyapi.com/api/character/?page=${pageParam}&name=${characterName}${filters}`;
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Fetching data failed with a ${response.status} from the server`)
     }
     return await response.json();
-  }, [characterName]);
+  }, [characterName, filters]);
 
   const infQuery = useInfiniteQuery({
     queryKey: ['infCharacters'],
@@ -30,7 +31,16 @@ export const CharacterListScreen = () => {
         return nextPage;
       }
     }
-  })
+  });
+
+  React.useEffect(() => {
+    console.log('refetch');
+    infQuery.refetch();
+  }, [filters]);
+
+  React.useEffect(() => {
+    infQuery.refetch();
+  }, [characterName]);
 
   const flattenedData = React.useMemo(() => {
     if (!infQuery.data) return [];
@@ -46,7 +56,7 @@ export const CharacterListScreen = () => {
   return (
     <View style={styles.container}>
       <StatusBar />
-      <Heading character={characterName} setCharacter={setCharacterName} />
+      <CharacterListHeader character={characterName} setCharacter={setCharacterName} setFilters={setFilters} />
       {infQuery.status === 'success' && (
         <CharacterFlatList data={flattenedData} onEndReached={onEndReached} />
       )}

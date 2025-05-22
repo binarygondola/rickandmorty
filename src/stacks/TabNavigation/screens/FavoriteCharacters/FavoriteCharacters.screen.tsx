@@ -3,45 +3,71 @@ import React, { useContext, useState } from 'react';
 import { View, StatusBar } from 'react-native';
 import { Info, Character } from '../../../../interfaces';
 import { CharacterFlatList } from '../CharacterList/CharacterFlatList';
-import { Heading } from '../CharacterList/CharacterListHeader';
+import { CharacterListHeader } from '../CharacterList/CharacterListHeader';
 import { styles } from './FavoriteCharacters.styled';
 import { CharactersContext } from '../../../../context/CharacterContext';
 
 const FavoriteCharactersScreen = () => {
   const [characterName, setCharacterName] = useState('');
-  const { characters } = useContext(CharactersContext);
+  const [filters, setFilters] = useState('');
+  const [characterList, setCharactersList] = useState<Character[]>([]);
 
-  const fetchData = React.useCallback(async (): Promise<Character[]> => {
-    let url = `https://rickandmortyapi.com/api/character/${characters}`;
-    console.log(url);
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Fetching data failed with a ${response.status} from the server`)
-    }
-    return await response.json();
-  }, [characters]);
+  const { characters } = useContext(CharactersContext);
 
   const query = useQuery({
     queryKey: ['characters'],
-    queryFn: fetchData,
+    queryFn: async (): Promise<Character[]> => {
+      if (characters.length === 0) {
+        return [];
+      }
+      let url = `https://rickandmortyapi.com/api/character/${characters}`;
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`Fetching data failed with a ${response.status} from the server`)
+      }
+
+      let data = await response.json();
+      if (Array.isArray(data)) {
+        return data;
+      } else {
+        return [data];
+      }
+    }
   });
 
-  const favData = React.useMemo(() => {
-    if (!query.data) return [];
-    console.log(query.data);
-    return query.data;
-  }, [query.data]);
+  const onEndReached = React.useCallback(() => true, []);
 
-  const onEndReached = React.useCallback(() => {
-    return true;
-  }, []);
+  React.useEffect(() => {
+    query.refetch();
+  }, [characters]);
+
+  React.useEffect(() => {
+    if (!!query.data) {
+      query.data = query.data.filter((character) => character.name.toLowerCase().includes(characterName.toLowerCase()));
+
+      let status = /&status=(.*)/.exec(filters);
+      if (status !== null) {
+        query.data = query.data.filter((character) => character.status.toLowerCase().includes(status[1]));
+      }
+
+      let species = /&species=(.*)/.exec(filters);
+      if (species !== null) {
+        query.data = query.data.filter((character) => character.status.toLowerCase().includes(species[1]));
+      }
+
+      setCharactersList(query.data);
+    } else {
+      setCharactersList([]);
+    }
+  }, [query.data, filters, characterName]);
 
   return (
     <View style={styles.container}>
       <StatusBar />
-      <Heading character={characterName} setCharacter={setCharacterName} />
+      <CharacterListHeader setFilters={setFilters} character={characterName} setCharacter={setCharacterName} />
       {query.status === 'success' && (
-        <CharacterFlatList data={favData} onEndReached={onEndReached} />
+        <CharacterFlatList data={characterList} onEndReached={onEndReached} />
       )}
     </View>
   );

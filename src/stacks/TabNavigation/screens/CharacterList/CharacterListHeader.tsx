@@ -5,13 +5,17 @@ import { Filter } from "./Filter";
 import { RMButton } from "../../../../components/RMButton";
 import { ImageHeader } from "../../../../components/ImageHeader";
 
-type HeadingProps = {
+type CharacterListHeaderProps = {
   character: string;
-  setCharacter: (_: string) => void
+  setCharacter: (_: string) => void;
+  setFilters: (_: string) => void
 }
 
-export const Heading = ({ character, setCharacter }: HeadingProps) => {
+export const CharacterListHeader = ({ character, setCharacter, setFilters }: CharacterListHeaderProps) => {
   const [showFilters, setShowFilters] = useState(false);
+
+  const [status, setStatus] = useState('');
+  const [species, setSpecies] = useState('');
 
   const filterIcon = React.useMemo(() => {
     return (
@@ -21,7 +25,7 @@ export const Heading = ({ character, setCharacter }: HeadingProps) => {
         color="white"
         style={{ alignSelf: 'center', marginLeft: 8 }}
       />)
-  }, [showFilters])
+  }, [showFilters]);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -61,7 +65,14 @@ export const Heading = ({ character, setCharacter }: HeadingProps) => {
             rightIcon={filterIcon}
             pressed={showFilters}
           />
-          {showFilters && <Filter />}
+          {showFilters && (
+            <Filter
+              status={status}
+              species={species}
+              setStatus={setStatus}
+              setSpecies={setSpecies}
+              setFilters={setFilters}
+            />)}
         </View>
       </View>
     </TouchableWithoutFeedback>

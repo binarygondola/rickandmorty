@@ -8,8 +8,6 @@ import { Card } from "../../../../components/Card";
 export const CharacterFlatList = ({ data, onEndReached }: { data: Character[], onEndReached: () => void }) => {
   const { navigate } = useNavigation<MainStackNavigationProp>();
 
-  console.log(data);
-
   const ListItem = React.memo<{ character: Character }>(
     ({ character }) => (
       <Card
@@ -26,11 +24,12 @@ export const CharacterFlatList = ({ data, onEndReached }: { data: Character[], o
   );
 
   return (
-    <FlatList
-      data={data}
-      keyExtractor={(item) => item!.id.toString()}
-      onEndReached={onEndReached}
-      renderItem={({ item }) => <ListItem character={item!} />}
-    />
+    (data.length > 0 &&
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item!.id.toString()}
+        onEndReached={onEndReached}
+        renderItem={({ item }) => <ListItem character={item!} />}
+      />)
   );
 }

@@ -4,21 +4,22 @@ import { CharacterDetailsStack } from '../CharacterDetails';
 import { TabNavigationStack } from '../TabNavigation';
 import { MainStackParamList, MainStackRoutes } from './Main.routes';
 
-const Tab = createNativeStackNavigator<MainStackParamList>();
+const Stack = createNativeStackNavigator<MainStackParamList>();
 
 export const MainStack = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen
         name={MainStackRoutes.TabNavigationStack}
         component={TabNavigationStack}
-        options={{ headerShown: false }}
       />
-      <Tab.Screen
+      <Stack.Screen
         name={MainStackRoutes.CharacterDetailsStack}
         component={CharacterDetailsStack}
-        options={{ headerShown: false }}
       />
-    </Tab.Navigator>
+    </Stack.Navigator>
   );
 };
